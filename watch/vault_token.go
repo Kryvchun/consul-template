@@ -55,7 +55,6 @@ func VaultTokenWatcher(
 	raw_token := strings.TrimSpace(config.StringVal(c.Token))
 	if raw_token == "" {
 		return newVaultK8SAuthMethodRefreshTokenWatcher(clients, c, doneCh)
-		// return nil, nil
 	}
 
 	unwrap := config.BoolVal(c.UnwrapToken)

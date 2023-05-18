@@ -55,7 +55,9 @@ func (d *VaultTokenQuery) Fetch(clients *ClientSet, opts *QueryOptions,
 		currentRenewer = newVaultSecretsOverrideRenewer(d, clients.Vault().Token())
 	}
 
-	if vaultSecretRenewable(d.secret) {
+	secret, _ := currentRenewer.secrets()
+
+	if vaultSecretRenewable(secret) {
 		err := renewSecret(clients, currentRenewer)
 		if err != nil {
 			return nil, nil, errors.Wrap(err, d.String())
